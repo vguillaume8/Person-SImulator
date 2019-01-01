@@ -50,8 +50,8 @@ public class Item {
 		
 	}
 	
-	public static Map<Integer, Integer> getItemAmount() {
-		return itemAmount;
+	public static int getItemAmount(int amountInd) {
+		return itemAmount.get(amountInd);
 	}
 	
 

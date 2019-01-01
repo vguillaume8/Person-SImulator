@@ -10,6 +10,7 @@ public class Person {
 	private bankAccount yourAccount;
 	private Job job;
 	private House house;
+	private double educationLevel = 1;
 	Random random = new Random(System.nanoTime());
 
 	
@@ -35,6 +36,10 @@ public class Person {
 	
 	public void setJob(Job newJob) {
 		job = newJob;
+		if(job.getJobName() == "Student"){
+			increaseEducationLevel();
+			System.out.println(name + " education level increased to: " + getEducationLevel());
+		}
 	}
 	
 	public Job getJob() {
@@ -47,7 +52,7 @@ public class Person {
 		
 	}
 	
-	public void addBankAccountBalance(int amount) {
+	public void addBankAccountBalance(double amount) {
 		yourAccount.deposit(amount);
 	}
 	
@@ -63,7 +68,12 @@ public class Person {
 	public House getHouse() {
 		return house;
 	}
-	
-	
 
+	public double getEducationLevel() {
+		return educationLevel;
+	}
+
+	public void increaseEducationLevel(){
+		this.educationLevel = this.educationLevel + 0.5;
+	}
 }

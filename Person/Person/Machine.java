@@ -1,15 +1,27 @@
 package Person;
 import bankAccount.*;
+
+import java.io.FileNotFoundException;
 import java.util.Random;
 import java.util.Scanner;
+import java.io.PrintWriter;
 
 
 
 public class Machine {
 	Job job = new Job(0);
+	PrintWriter printWriter;
+	PrintWriter printwriter = null;
+
+
 	
 	public Machine() {
-		
+		try{
+			this.printwriter = new PrintWriter("output.txt");
+		}catch(
+				FileNotFoundException e){
+			System.out.println("File Not Found");
+		}
 		
 	}
 	
@@ -35,7 +47,7 @@ public class Machine {
 		String itemName = Item.printItemName(getRandom(Item.getListOfItems().size() - 1));
 		person.getHouse().addItem(new Item(itemName));
 		int amountInd = Item.getItemInd(itemName);
-		System.out.println(person.getName() + " just bought a " + itemName + " for $" + Item.getItemAmount()[amountInd]);
+		System.out.println(person.getName() + " just bought a " + itemName + " for $" + Item.getItemAmount(amountInd));
 	}
 	
 	public boolean playGame(Scanner input) {
@@ -50,6 +62,8 @@ public class Machine {
 		if(Calander.printDay(day) == "Monday") {
 			if(person.getBankAccountBalance() > 500) {
 				if(person.getHouse().itemCounter < person.getHouse().getHouseSpace()) {
+					System.out.println("EXIT");
+					System.exit(0);
 					buyItem(person);
 				}
 				
@@ -70,6 +84,7 @@ public class Machine {
 		int amount = Bills.getAmount(amountKey);
 		person.subtractBankAccountBalance(amount);
 		System.out.println(person.getName() + " just payed " + Bills.billName.get(amountKey) + " $" + amount);
+
 		
 	}
 	
@@ -81,14 +96,16 @@ public class Machine {
 	
 
 	public void payDay(Person person) {
-		person.addBankAccountBalance(person.getJob().getSalary() / 52);
-		System.out.println(person.getName() + " just got payed $" + person.getJob().getSalary() / 52);
+		person.addBankAccountBalance(person.getJob().getSalary() / 52 * person.getEducationLevel() );
+		System.out.println(person.getName() + " just got payed $" + person.getJob().getSalary() / 52 * person.getEducationLevel());
+
 	}
 	
 	public void printPeople(Person[] people) {
 		for(int i = 0; i < people.length; i++) {
 			System.out.println("["+people[i].getName() + ": " + people[i].getAge() + " years old " + people[i].getJob().getJobName() + 
 					" $" + people[i].getBankAccountBalance() + "]");
+
 		}
 		
 	}
