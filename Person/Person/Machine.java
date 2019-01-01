@@ -32,7 +32,7 @@ public class Machine {
 	}
 	
 	public void buyItem(Person person) {
-		String itemName = Item.printItemName(getRandom(Item.getListOfItems().length - 1));
+		String itemName = Item.printItemName(getRandom(Item.getListOfItems().size() - 1));
 		person.getHouse().addItem(new Item(itemName));
 		int amountInd = Item.getItemInd(itemName);
 		System.out.println(person.getName() + " just bought a " + itemName + " for $" + Item.getItemAmount()[amountInd]);

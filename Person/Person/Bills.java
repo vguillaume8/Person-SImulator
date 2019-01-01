@@ -17,7 +17,7 @@ public class Bills {
 		billName.put(1, "Food");
 		billName.put(2, "Insurance");
 		billName.put(3, "Gas");
-		billName.put(4, "Electrcity");
+		billName.put(4, "Electricity");
 		billName.put(5, "Water");
 		billName.put(6, "Cable");
 		
